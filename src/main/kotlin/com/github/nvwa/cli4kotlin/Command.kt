@@ -84,90 +84,90 @@ open class Command(private val name: String, private val desc: String) {
   // 添加不同类型的选项
 
   fun addStringOption(
-          longForm: String,
-          isRequired: Boolean,
-          shortForm: Char? = null,
-          help: String? = null
+      longForm: String,
+      isRequired: Boolean,
+      shortForm: Char? = null,
+      help: String? = null
   ): Command = addOption(StringOption(longForm, isRequired, shortForm, help))
 
   fun addIntegerOption(
-          longForm: String,
-          isRequired: Boolean,
-          shortForm: Char? = null,
-          help: String? = null
+      longForm: String,
+      isRequired: Boolean,
+      shortForm: Char? = null,
+      help: String? = null
   ): Command = addOption(IntegerOption(longForm, isRequired, shortForm, help))
 
   fun addLongOption(
-          longForm: String,
-          isRequired: Boolean,
-          shortForm: Char? = null,
-          help: String? = null
+      longForm: String,
+      isRequired: Boolean,
+      shortForm: Char? = null,
+      help: String? = null
   ): Command = addOption(LongOption(longForm, isRequired, shortForm, help))
 
   fun addDoubleOption(
-          longForm: String,
-          isRequired: Boolean,
-          shortForm: Char? = null,
-          help: String? = null
+      longForm: String,
+      isRequired: Boolean,
+      shortForm: Char? = null,
+      help: String? = null
   ): Command = addOption(DoubleOption(longForm, isRequired, shortForm, help))
 
   fun addBooleanOption(
-          longForm: String,
-          isRequired: Boolean,
-          shortForm: Char? = null,
-          help: String? = null
+      longForm: String,
+      isRequired: Boolean,
+      shortForm: Char? = null,
+      help: String? = null
   ): Command = addOption(BooleanOption(longForm, isRequired, shortForm, help))
 
   // 获取不同类型选项值
 
   fun getStringValue(
-          longForm: String,
-          default: String? = null
+      longForm: String,
+      default: String? = null
   ): String? = getValue(longForm, default)
 
   fun getStringValue(
-          shortForm: Char,
-          default: String? = null
+      shortForm: Char,
+      default: String? = null
   ): String? = getValue(shortForm, default)
 
   fun getIntegerValue(
-          longForm: String,
-          default: Int? = null
+      longForm: String,
+      default: Int? = null
   ): Int? = getValue(longForm, default)
 
   fun getIntegerValue(
-          shortForm: Char,
-          default: Int? = null
+      shortForm: Char,
+      default: Int? = null
   ): Int? = getValue(shortForm, default)
 
   fun getLongValue(
-          longForm: String,
-          default: Long? = null
+      longForm: String,
+      default: Long? = null
   ): Long? = getValue(longForm, default)
 
   fun getLongValue(
-          shortForm: Char,
-          default: Long? = null
+      shortForm: Char,
+      default: Long? = null
   ): Long? = getValue(shortForm, default)
 
   fun getDoubleValue(
-          longForm: String,
-          default: Double? = null
+      longForm: String,
+      default: Double? = null
   ): Double? = getValue(longForm, default)
 
   fun getDoubleValue(
-          shortForm: Char,
-          default: Double? = null
+      shortForm: Char,
+      default: Double? = null
   ): Double? = getValue(shortForm, default)
 
   fun getBooleanValue(
-          longForm: String,
-          default: Boolean? = null
+      longForm: String,
+      default: Boolean? = null
   ): Boolean? = getValue(longForm, default)
 
   fun getBooleanValue(
-          shortForm: Char,
-          default: Boolean? = null
+      shortForm: Char,
+      default: Boolean? = null
   ): Boolean? = getValue(shortForm, default)
 
   /**
@@ -176,10 +176,10 @@ open class Command(private val name: String, private val desc: String) {
    * @param args 待解析参数表
    */
   @Throws(UnknownOptionException::class,
-          IllegalOptionValueException::class,
-          UnknownSubOptionException::class,
-          NotFlagException::class,
-          RequiredOptionException::class)
+      IllegalOptionValueException::class,
+      UnknownSubOptionException::class,
+      NotFlagException::class,
+      RequiredOptionException::class)
   fun parse(args: Array<String>) {
     var position = 0
 
@@ -282,15 +282,15 @@ open class Command(private val name: String, private val desc: String) {
     for ((key: String, option: Option<*>) in options)
       if (key.startsWith("--")) {
         var format: String =
-                if (option.shortForm == null)
-                  if (option.withValue)
-                    "{--" + option.longForm + "=<value${counter++}>}"
-                  else "{--" + option.longForm + "}"
-                else
-                  if (option.withValue)
-                    "{--" + option.longForm + "=<value$counter>, -" +
-                            option.shortForm + " value${counter++}}"
-                  else "{--" + option.longForm + ", -" + option.shortForm + "}"
+            if (option.shortForm == null)
+              if (option.withValue)
+                "{--" + option.longForm + "=<value${counter++}>}"
+              else "{--" + option.longForm + "}"
+            else
+              if (option.withValue)
+                "{--" + option.longForm + "=<value$counter>, -" +
+                    option.shortForm + " value${counter++}}"
+              else "{--" + option.longForm + ", -" + option.shortForm + "}"
 
         // "[]"表示可选参数
         if (!option.isRequired) {
@@ -300,7 +300,7 @@ open class Command(private val name: String, private val desc: String) {
       }
 
     return "Usage: ${this.name} " +
-            if (formats.size > 0) formats.join(" ") else ""
+        if (formats.size > 0) formats.join(" ") else ""
   }
 
   private fun getDescription(): String {
@@ -308,11 +308,11 @@ open class Command(private val name: String, private val desc: String) {
   }
 
   private fun getOptionsDescription(): String =
-          if (help.size > 0) "Options:" + "\n\t" +
-                  help.join("\n\t") else ""
+      if (help.size > 0) "Options:" + "\n\t" +
+          help.join("\n\t") else ""
 
   open fun getHelp(): String = getUsage() + "\n" +
-          getDescription() + "\n" + getOptionsDescription()
+      getDescription() + "\n" + getOptionsDescription()
 
   private fun StringArray.join(separator: String): String {
     var result = ""

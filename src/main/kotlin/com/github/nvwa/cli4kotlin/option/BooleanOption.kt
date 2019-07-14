@@ -6,10 +6,10 @@ package com.github.nvwa.cli4kotlin.option
 class BooleanOption : Option<Boolean> {
 
   constructor(
-          longForm: String,
-          isRequired: Boolean,
-          shortForm: Char? = null,
-          helpDesc: String? = null
+      longForm: String,
+      isRequired: Boolean,
+      shortForm: Char? = null,
+      helpDesc: String? = null
   ) : super(longForm, false, isRequired, shortForm, helpDesc)
 
   /**

@@ -19,19 +19,19 @@ import java.util.regex.Pattern
  */
 @Suppress("LeakingThis")
 abstract class Option<T> private constructor(
-        val longForm: String, val withValue: Boolean,
-        val isRequired: Boolean = false, val shortForm: String? = null,
-        private val helpDesc: String? = null) {
+    val longForm: String, val withValue: Boolean,
+    val isRequired: Boolean = false, val shortForm: String? = null,
+    private val helpDesc: String? = null) {
 
   // 解析字符串参数所得的具体类型值
   private var value: T? = null
 
   // "--"型，长格式
   private val longFormPattern = Pattern.compile(
-          "^([a-z](?:[a-z0-9_\\-]*[a-z0-9])?)$", Pattern.CASE_INSENSITIVE)
+      "^([a-z](?:[a-z0-9_\\-]*[a-z0-9])?)$", Pattern.CASE_INSENSITIVE)
   // "-"型，短格式
   private val shortFormPattern = Pattern.compile(
-          "^[a-z]$", Pattern.CASE_INSENSITIVE)
+      "^[a-z]$", Pattern.CASE_INSENSITIVE)
 
   init {
     val longFormMatcher = longFormPattern.matcher(longForm)
@@ -50,12 +50,12 @@ abstract class Option<T> private constructor(
   }
 
   protected constructor(
-          longForm: String,
-          withValue: Boolean,
-          isRequired: Boolean,
-          shortForm: Char? = null,
-          helpDesc: String? = null) :
-          this(longForm, withValue, isRequired, shortForm?.toString(), helpDesc)
+      longForm: String,
+      withValue: Boolean,
+      isRequired: Boolean,
+      shortForm: Char? = null,
+      helpDesc: String? = null) :
+      this(longForm, withValue, isRequired, shortForm?.toString(), helpDesc)
 
   /**
    * 返回选项帮助信息
