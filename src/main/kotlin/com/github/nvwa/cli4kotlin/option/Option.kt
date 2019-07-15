@@ -65,7 +65,7 @@ abstract class Option<T> private constructor(
   fun getHelp(): String? {
     return if (helpDesc == null) null else {
       val options = (if (shortForm != null) "-$shortForm, " else "") + "--" + longForm + ":"
-      val tabs = 4 - (options.length / 4)
+      val tabs = 6 - (options.length / 4)
       options + "\t".repeat(tabs) + helpDesc + (if (isRequired) " (is required)" else "")
     }
   }
